@@ -1,0 +1,7 @@
+WER / CER Evaluation Results
+==============================
+
+Input file: results/ft_whisper_qug_codeswitch.tsv
+
+WER: 0.4522
+CER: 0.1032

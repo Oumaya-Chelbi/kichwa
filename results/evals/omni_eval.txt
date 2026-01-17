@@ -1,0 +1,7 @@
+WER / CER Evaluation Results
+==============================
+
+Input file: results/omni_qug_codeswitch.tsv
+
+WER: 0.3406
+CER: 0.0540

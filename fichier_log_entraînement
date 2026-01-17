@@ -1,0 +1,194 @@
+N_gpu: 1
+Gradient Accumulation: 24
+BATCH_SIZE: 24
+Dataset path: CORPUS_qug_NO_Cswitch_30/
+Fixed splits dir: fixed_splits
+
+============================================================
+WHISPER FINE-TUNING WITH LAZY LOADING
+============================================================
+
+[INFO] Increased file limit from 1024 to 10000
+
+[INFO] Disk space check:
+  Total: 914 Go
+  Used:  88 Go
+  Free:  779 Go
+[INFO] Fixed splits found in fixed_splits
+[INFO] Split statistics:
+       Dataset: CORPUS_qug_NO_Cswitch_30/
+       Seed: 42
+       Total files: 2194
+       Train files: 1755 (80.0%)
+       Dev files: 219 (10.0%)
+       Test files: 220 (10.0%)
+       Train: Chapter8_154_154, Chapter17_9_9, Chapter18_84_84, Chapter7_61_61, Chapter8_186_186...
+       Dev: Chapter18_41_41, Chapter1_122_122, Chapter1_131_131, Chapter3_154_154, Chapter1_28_28...
+       Test: Chapter19_29_29, Chapter8_109_109, Chapter4_138_138, Chapter14_83_83, Chapter2_72_72...
+
+[INFO] Initializing model and processors...
+config.json: 1.98kB [00:00, 15.3MB/s]
+model.safetensors: 100%|█████████████████████| 290M/290M [00:17<00:00, 16.9MB/s]
+generation_config.json: 3.81kB [00:00, 26.9MB/s]
+preprocessor_config.json: 185kB [00:00, 193MB/s]
+tokenizer_config.json: 283kB [00:00, 267MB/s]
+vocab.json: 836kB [00:00, 26.9MB/s]
+tokenizer.json: 2.48MB [00:00, 45.0MB/s]
+merges.txt: 494kB [00:00, 24.9MB/s]
+normalizer.json: 52.7kB [00:00, 119MB/s]
+added_tokens.json: 34.6kB [00:00, 118MB/s]
+special_tokens_map.json: 2.19kB [00:00, 16.2MB/s]
+
+[INFO] Loading and preprocessing data with lazy loading...
+[INFO] Scanning directory for audio files...
+[INFO] Found 2194 audio-text pairs
+[INFO] Using fixed splits from fixed_splits
+[INFO] Fixed splits loaded: 1755 train, 219 dev, 220 test
+[INFO] Collecting indices for fixed splits...
+[INFO] Indices collected: 1755 train, 219 dev, 220 test
+[INFO] Creating lazy audio datasets...
+[INFO] Creating lazy dataset for train (1755 samples)
+[INFO] Creating lazy dataset for dev (219 samples)
+[INFO] Creating lazy dataset for test (220 samples)
+
+[INFO] Verifying split integrity...
+  train: 1755 samples
+  dev: 219 samples
+  test: 220 samples
+[INFO] Total samples across all splits: 2194
+
+[INFO] Saving dataset splits to text files...
+[INFO] Sauvegarde de train dans dataset_splits/train_with_paths.txt...
+[INFO] train sauvegardé : 1755 échantillons
+[INFO] Sauvegarde de dev dans dataset_splits/dev_with_paths.txt...
+[INFO] dev sauvegardé : 219 échantillons
+[INFO] Sauvegarde de test dans dataset_splits/test_with_paths.txt...
+[INFO] test sauvegardé : 220 échantillons
+[INFO] Fichiers sauvegardés dans dataset_splits/
+
+[INFO] Dataset split statistics:
+  train: 1755 samples
+  dev: 219 samples
+  test: 220 samples
+
+[INFO] Initializing Whisper fine-tuner...
+
+[INFO] Setting up trainer...
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+/data/projets_m2_2526/ou/.venv/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/logger_connector/logger_connector.py:76: Starting from v1.9.0, `tensorboardX` has been removed as a dependency of the `pytorch_lightning` package, due to potential conflicts with other packages in the ML ecosystem. For this reason, `logger=True` will use `CSVLogger` as the default logger, unless the `tensorboard` or `tensorboardX` packages are found. Please `pip install lightning[extra]` or one of them to enable TensorBoard support by default
+
+============================================================
+STARTING TRAINING
+============================================================
+You are using a CUDA device ('NVIDIA GeForce RTX 3090') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+initializing deepspeed distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+/data/projets_m2_2526/ou/.venv/lib/python3.11/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:881: Checkpoint directory /data/projets_m2_2526/ou/SAVE_DIR_1 exists and is not empty.
+[INFO] Preparing train_DataLoader...
+Enabling DeepSpeed FP16. Model parameters and inputs will be cast to `float16`.
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+Stage 3 initialize beginning
+MA 0.14 GB         Max_MA 0.14 GB         CA 0.15 GB         Max_CA 0 GB 
+CPU Virtual Memory:  used = 2.51 GB, percent = 4.0%
+DeepSpeedZeRoOffload initialize [begin]
+MA 0.14 GB         Max_MA 0.14 GB         CA 0.15 GB         Max_CA 0 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+Parameter Offload - Persistent parameters statistics: param_count = 144, numel = 92160
+DeepSpeedZeRoOffload initialize [end]
+MA 0.14 GB         Max_MA 0.18 GB         CA 0.2 GB         Max_CA 0 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+Before creating fp16 partitions
+MA 0.14 GB         Max_MA 0.14 GB         CA 0.2 GB         Max_CA 0 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+After creating fp16 partitions: 1
+MA 0.14 GB         Max_MA 0.14 GB         CA 0.16 GB         Max_CA 0 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+Before creating fp32 partitions
+MA 0.14 GB         Max_MA 0.14 GB         CA 0.16 GB         Max_CA 0 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+After creating fp32 partitions
+MA 0.4 GB         Max_MA 0.67 GB         CA 0.69 GB         Max_CA 1 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+Before initializing optimizer states
+MA 0.4 GB         Max_MA 0.4 GB         CA 0.69 GB         Max_CA 1 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+After initializing optimizer states
+MA 0.4 GB         Max_MA 0.67 GB         CA 0.69 GB         Max_CA 1 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+After initializing ZeRO optimizer
+MA 0.91 GB         Max_MA 1.01 GB         CA 1.06 GB         Max_CA 1 GB 
+CPU Virtual Memory:  used = 2.67 GB, percent = 4.3%
+/data/projets_m2_2526/ou/.venv/lib/python3.11/site-packages/pytorch_lightning/utilities/model_summary/model_summary.py:242: Precision 16-mixed is not supported by the model summary.  Estimated model size in MB will not be accurate. Using 32 bits instead.
+
+  | Name  | Type                            | Params | Params per Device | Mode | FLOPs
+---------------------------------------------------------------------------------------------
+0 | model | WhisperForConditionalGeneration | 72.6 M | 72.6 M            | eval | 0    
+---------------------------------------------------------------------------------------------
+71.8 M    Trainable params
+768 K     Non-trainable params
+72.6 M    Total params
+290.376   Total estimated model params size (MB)
+0         Modules in train mode
+182       Modules in eval mode
+0         Total Flops
+Sanity Checking: |                                        | 0/? [00:00<?, ?it/s][INFO] Preparing val_dataLoader...
+/data/projets_m2_2526/ou/.venv/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'val_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=31` in the `DataLoader` to improve performance.
+/data/projets_m2_2526/ou/.venv/lib/python3.11/site-packages/pytorch_lightning/utilities/data.py:123: Your `IterableDataset` has `__len__` defined. In combination with multi-process data loading (when num_workers > 1), `__len__` could be inaccurate if each worker is not configured independently to avoid having duplicate data.
+You're using a WhisperTokenizerFast tokenizer. Please note that with a fast tokenizer, using the `__call__` method is faster than using a method to encode the text followed by a call to the `pad` method to get a padded encoding.
+Downloading builder script: 5.13kB [00:00, 17.9MB/s]      | 0/2 [00:00<?, ?it/s]
+[INFO] Preparing train_DataLoader...                                            
+/data/projets_m2_2526/ou/.venv/lib/python3.11/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:434: The 'train_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=31` in the `DataLoader` to improve performance.
+/data/projets_m2_2526/ou/.venv/lib/python3.11/site-packages/pytorch_lightning/loops/fit_loop.py:534: Found 182 module(s) in eval mode at the start of training. This may lead to unexpected behavior during training. If this is intentional, you can ignore this warning.
+Epoch 0: 100%|█| 74/74 [00:29<00:00,  2.54it/s, v_num=0, train_loss=2.730, val_lEpoch 0, global step 3: 'val_loss' reached 2.87329 (best 2.87329), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1
+Epoch 1: 100%|█| 74/74 [00:27<00:00,  2.67it/s, v_num=0, train_loss=0.762, val_lEpoch 1, global step 6: 'val_loss' reached 0.96654 (best 0.96654), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1
+Epoch 2: 100%|█| 74/74 [00:28<00:00,  2.59it/s, v_num=0, train_loss=0.418, val_lEpoch 2, global step 9: 'val_loss' reached 0.61591 (best 0.61591), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1
+Epoch 3: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.57it/s, v_num=0, train_loss=0.296, val_loss=0.499, val_wer=0.608]Epoch 3, global step 12: 'val_loss' reached 0.49942 (best 0.49942), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                    
+Epoch 4: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.57it/s, v_num=0, train_loss=0.273, val_loss=0.442, val_wer=0.564]Epoch 4, global step 15: 'val_loss' reached 0.44190 (best 0.44190), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                    
+Epoch 5: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.56it/s, v_num=0, train_loss=0.275, val_loss=0.399, val_wer=0.538]Epoch 5, global step 18: 'val_loss' reached 0.39912 (best 0.39912), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                    
+Epoch 6: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:29<00:00,  2.55it/s, v_num=0, train_loss=0.263, val_loss=0.369, val_wer=0.533]Epoch 6, global step 21: 'val_loss' reached 0.36929 (best 0.36929), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                    
+Epoch 7: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.57it/s, v_num=0, train_loss=0.251, val_loss=0.354, val_wer=0.524]Epoch 7, global step 24: 'val_loss' reached 0.35397 (best 0.35397), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                    
+Epoch 8: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.58it/s, v_num=0, train_loss=0.248, val_loss=0.345, val_wer=0.516]Epoch 8, global step 27: 'val_loss' reached 0.34459 (best 0.34459), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                    
+Epoch 9: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.55it/s, v_num=0, train_loss=0.251, val_loss=0.338, val_wer=0.503]Epoch 9, global step 30: 'val_loss' reached 0.33803 (best 0.33803), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                    
+Epoch 10: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.57it/s, v_num=0, train_loss=0.257, val_loss=0.335, val_wer=0.500]Epoch 10, global step 33: 'val_loss' reached 0.33469 (best 0.33469), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                   
+Epoch 11: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.57it/s, v_num=0, train_loss=0.262, val_loss=0.333, val_wer=0.498]Epoch 11, global step 36: 'val_loss' reached 0.33302 (best 0.33302), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                   
+Epoch 12: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.57it/s, v_num=0, train_loss=0.127, val_loss=0.313, val_wer=0.484]Epoch 12, global step 39: 'val_loss' reached 0.31268 (best 0.31268), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                   
+Epoch 13: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.58it/s, v_num=0, train_loss=0.101, val_loss=0.294, val_wer=0.465]Epoch 13, global step 42: 'val_loss' reached 0.29433 (best 0.29433), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                   
+Epoch 14: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.57it/s, v_num=0, train_loss=0.112, val_loss=0.283, val_wer=0.448]Epoch 14, global step 45: 'val_loss' reached 0.28347 (best 0.28347), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                   
+Epoch 15: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:38<00:00,  1.90it/s, v_num=0, train_loss=0.120, val_loss=0.278, val_wer=0.441]Epoch 15, global step 48: 'val_loss' reached 0.27814 (best 0.27814), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                   
+Epoch 16: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.58it/s, v_num=0, train_loss=0.119, val_loss=0.277, val_wer=0.440]Epoch 16, global step 51: 'val_loss' reached 0.27706 (best 0.27706), saving model to '/data/projets_m2_2526/ou/SAVE_DIR_1/best_model.ckpt' as top 1                                                                   
+Epoch 17: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.59it/s, v_num=0, train_loss=0.117, val_loss=0.277, val_wer=0.430]Epoch 17, global step 54: 'val_loss' was not in top 1                                                                                                                                                                 
+Epoch 18: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.61it/s, v_num=0, train_loss=0.115, val_loss=0.278, val_wer=0.406]Epoch 18, global step 57: 'val_loss' was not in top 1                                                                                                                                                                 
+Epoch 19: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.60it/s, v_num=0, train_loss=0.112, val_loss=0.278, val_wer=0.389]Epoch 19, global step 60: 'val_loss' was not in top 1                                                                                                                                                                 
+Epoch 19: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████| 74/74 [00:28<00:00,  2.60it/s, v_num=0, train_loss=0.112, val_loss=0.278, val_wer=0.389]
+
+[INFO] Converting DeepSpeed checkpoint...
+Processing zero checkpoint './SAVE_DIR_1/best_model.ckpt/checkpoint'
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 2046.00it/s]
+Detected checkpoint of type zero stage ZeroStageEnum.weights, world_size: 1
+Parsing checkpoint created by deepspeed==0.18.4
+Reconstructed Frozen fp32 state dict with 1 params 768000 elements
+Gathering sharded weights: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 244/244 [00:00<00:00, 1184502.52it/s]
+Reconstructed Trainable fp32 state dict with 244 params 71825920 elements
+Saving fp32 state dict to ./SAVE_DIR_1/model.pt
+[INFO] Training completed. Best model saved at ./SAVE_DIR_1/model.pt
+
+[INFO] Loading best model for evaluation...
+
+[INFO] Generating predictions on test set...
+[INFO] Generating predictions with lazy loading...
+Processing samples:   0%|                                                                                                                                                                 | 0/220 [00:00<?, ?sample/s]The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Processing samples: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 220/220 [00:21<00:00, 10.42sample/s]
+
+[INFO] Computing evaluation metrics...
+
+============================================================
+EVALUATION RESULTS
+============================================================
+Mean WER: 0.323
+Mean CER: 0.061
+Mean CER (no space): 0.051
+Number of test samples: 220
+
+[INFO] Evaluation results saved to ./SAVE_DIR_1/evaluation_results.txt
+
+[INFO] Script completed!

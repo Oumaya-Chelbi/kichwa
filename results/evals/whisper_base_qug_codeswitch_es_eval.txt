@@ -1,0 +1,7 @@
+WER / CER Evaluation Results
+==============================
+
+Input file: results/whisper_base/whisper_base_qug_codeswitch_es.tsv
+
+WER: 2.4157
+CER: 0.8573
